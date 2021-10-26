@@ -83,7 +83,7 @@ export class BasicsTwo extends React.Component {
               placeholder={'Email'}
               keyboardType={'email-address'}
               value={'study@gmail.com'}
-              // multiline
+              // editable
             />
           </View>
 
@@ -97,13 +97,15 @@ export class BasicsTwo extends React.Component {
             <TextInput
               style={{
                 backgroundColor: '#fff',
-                // height: 100,
                 width: '80%',
                 borderColor: 'red',
 
                 borderWidth: 1,
-                borderRadius: 10,
-                // maxHeight: 80,
+                borderTopRightRadius: 20,
+                borderTopLeftRadius: 10,
+                borderBottomRightRadius: 10,
+                borderBottomLeftRadius: 20,
+
                 paddingLeft: 10,
                 paddingRight: 10,
                 color: 'blue',
@@ -125,7 +127,7 @@ export class BasicsTwo extends React.Component {
             <TextInput
               style={{
                 backgroundColor: '#fff',
-                // height: 100,
+
                 width: '80%',
                 borderColor: 'red',
                 borderWidth: 1,
@@ -133,15 +135,13 @@ export class BasicsTwo extends React.Component {
                 borderTopLeftRadius: 10,
                 borderBottomLeftRadius: 20,
                 borderBottomRightRadius: 10,
-                maxHeight: 80,
+
                 paddingLeft: 10,
-                paddingRight: 10,
                 color: 'blue',
               }}
               placeholder={'Phone'}
               keyboardType={'phone-pad'}
-
-              // multiline
+              maxLength={11}
             />
           </View>
         </View>
