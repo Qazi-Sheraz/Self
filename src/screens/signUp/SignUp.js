@@ -4,6 +4,13 @@ import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 export class SignUp extends React.Component {
+  sendData = (param, param2) => {
+    console.warn('This is param =    ' + param);
+    console.warn('This is param2=   ' + param2);
+  };
+  sendData2 = abc => {
+    console.warn('Sign In= ' + abc);
+  };
   render() {
     return (
       <KeyboardAwareScrollView
@@ -55,7 +62,7 @@ export class SignUp extends React.Component {
           {/* {Bottom View} */}
           <View
             style={{
-              height: '40%',
+              height: '50%',
               // backgroundColor: 'red',
               padding: 25,
             }}>
@@ -63,6 +70,7 @@ export class SignUp extends React.Component {
               style={{
                 // backgroundColor: '#fff',
                 borderBottomWidth: 0.5,
+                color: 'red',
               }}
               placeholder={'Name'}
             />
@@ -71,6 +79,7 @@ export class SignUp extends React.Component {
                 // backgroundColor: '#fff',
                 marginTop: 10,
                 borderBottomWidth: 0.5,
+                color: 'red',
               }}
               placeholder={'Email'}
               keyboardType={'email-address'}
@@ -80,31 +89,67 @@ export class SignUp extends React.Component {
                 // backgroundColor: '#fff',
                 marginTop: 10,
                 borderBottomWidth: 0.5,
+                color: 'red',
               }}
               placeholder={'Password'}
               secureTextEntry
             />
+            <View
+              style={{
+                marginTop: 40,
+                width: '100%',
+                alignItems: 'center',
+              }}>
+              <TouchableOpacity
+                onPress={() => {
+                  const param = 'study';
+                  const param2 = 'study2';
+                  this.sendData(param, param2);
+                }}
+                style={{
+                  backgroundColor: '#000',
+                  width: '70%',
+                  height: 50,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: 7,
+                }}>
+                <Text
+                  style={{
+                    color: '#fff',
+                  }}>
+                  Create Account
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
           <View
             style={{
-              marginTop: 30,
-              width: '100%',
-              alignItems: 'center',
+              // backgroundColor:'#faf',
+              height: '10%',
+              justifyContent: 'center',
+              flexDirection: 'row',
             }}>
-            <TouchableOpacity
+            <Text
               style={{
-                backgroundColor: '#000',
-                width: '70%',
-                height: 50,
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: 7,
+                fontSize: 15,
+              }}>
+              Already have an Account?{' '}
+            </Text>
+
+            <TouchableOpacity
+              onPress={() => {
+                const abc = 'signIn';
+                this.sendData2(abc);
               }}>
               <Text
                 style={{
-                  color: '#fff',
+                  fontSize: 18,
+                  fontWeight: 'bold',
+                  textDecorationLine: 'underline',
+                  color: 'red',
                 }}>
-                Create Account
+                Sign In
               </Text>
             </TouchableOpacity>
           </View>
