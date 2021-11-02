@@ -1,15 +1,16 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, Touchable} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { BasicsTwo } from '../basicsTwo';
 
 export class SignUp extends React.Component {
   sendData = (param, param2) => {
     console.warn('This is param =    ' + param);
     console.warn('This is param2=   ' + param2);
   };
-  sendData2 = abc => {
-    console.warn('Sign In= ' + abc);
+  sendData2 = SignIn => {
+    console.warn('Sign In= ' + SignIn);
   };
   render() {
     return (
@@ -94,6 +95,16 @@ export class SignUp extends React.Component {
               placeholder={'Password'}
               secureTextEntry
             />
+            <TouchableOpacity
+            style={{
+              marginTop:10,
+              // marginLeft:10,
+              alignItems:'flex-end',
+
+            }}>
+              <Text>Forget Password ?..</Text>
+            </TouchableOpacity>
+
             <View
               style={{
                 marginTop: 40,
@@ -101,10 +112,9 @@ export class SignUp extends React.Component {
                 alignItems: 'center',
               }}>
               <TouchableOpacity
+                //
                 onPress={() => {
-                  const param = 'study';
-                  const param2 = 'study2';
-                  this.sendData(param, param2);
+                  this.props.navigation.navigate('Basics');
                 }}
                 style={{
                   backgroundColor: '#000',
@@ -139,8 +149,9 @@ export class SignUp extends React.Component {
 
             <TouchableOpacity
               onPress={() => {
-                const abc = 'signIn';
-                this.sendData2(abc);
+                // const SignIn = 'signIn';
+                // this.sendData2(SignIn);
+                this.props.navigation.navigate('BasicsTwo');
               }}>
               <Text
                 style={{
