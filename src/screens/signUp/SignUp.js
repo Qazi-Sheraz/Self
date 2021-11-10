@@ -1,17 +1,65 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, TextInput, TouchableOpacity, Touchable} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import { BasicsTwo } from '../basicsTwo';
+import {BasicsTwo} from '../basicsTwo';
 
 export class SignUp extends React.Component {
+  state = {
+    name: '',
+    email: '',
+    password: '',
+  };
+
   sendData = (param, param2) => {
     console.warn('This is param =    ' + param);
     console.warn('This is param2=   ' + param2);
   };
-  sendData2 = SignIn => {
-    console.warn('Sign In= ' + SignIn);
+  // sendData2 = SignIn => {
+  //   console.warn('Sign In= ' + SignIn);
+  // };
+  createUser = () => {
+    //   if (
+    //     this.state.name === '' ||
+    //     this.state.email === '' ||
+    //     this.state.password === ''
+    //   ) {
+    //     alert('All fields are required');
+    //   } else {
+    //     alert('All ok');
+    //   }
+    // };
+    // if (this.state.name === '')
+    // {alert('name are required');}
+    //  else {
+    //   if (this.state.email === '')
+    // {alert(' email are required');
+    // }}
+
+    //   else{
+    //   if(this.state.password === '')
+    //   {
+    //     alert('password is inviled');
+    //   }else{
+    //
+    //   alert('All ok');
+    // }
+    // };
+    const navProps = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+    };
+
+    this.state.name === ''
+      ? alert('Name is required')
+      : this.state.email === ''
+      ? alert('Email is required')
+      : this.state.password.length < 8
+      ? alert('Password must contain 8 characters')
+      : this.props.navigation.navigate('Dashboard', navProps);
   };
+
   render() {
     return (
       <KeyboardAwareScrollView
@@ -63,11 +111,12 @@ export class SignUp extends React.Component {
           {/* {Bottom View} */}
           <View
             style={{
-              height: '50%',
+              height: '60%',
               // backgroundColor: 'red',
               padding: 25,
             }}>
             <TextInput
+              onChangeText={txt => this.setState({name: txt})}
               style={{
                 // backgroundColor: '#fff',
                 borderBottomWidth: 0.5,
@@ -76,6 +125,7 @@ export class SignUp extends React.Component {
               placeholder={'Name'}
             />
             <TextInput
+              onChangeText={txt => this.setState({email: txt})}
               style={{
                 // backgroundColor: '#fff',
                 marginTop: 10,
@@ -86,6 +136,7 @@ export class SignUp extends React.Component {
               keyboardType={'email-address'}
             />
             <TextInput
+              onChangeText={txt => this.setState({password: txt})}
               style={{
                 // backgroundColor: '#fff',
                 marginTop: 10,
@@ -95,16 +146,20 @@ export class SignUp extends React.Component {
               placeholder={'Password'}
               secureTextEntry
             />
+            {/* Forget pass... */}
             <TouchableOpacity
-            style={{
-              marginTop:10,
-              // marginLeft:10,
-              alignItems:'flex-end',
-
-            }}>
+              onPress={() => {
+                console.warn('1');
+                console.log('2');
+              }}
+              style={{
+                marginTop: 10,
+                // marginLeft:10,
+                alignItems: 'flex-end',
+              }}>
               <Text>Forget Password ?..</Text>
             </TouchableOpacity>
-
+            {/* create Account */}
             <View
               style={{
                 marginTop: 40,
@@ -112,10 +167,11 @@ export class SignUp extends React.Component {
                 alignItems: 'center',
               }}>
               <TouchableOpacity
-                //
-                onPress={() => {
-                  this.props.navigation.navigate('Basics');
-                }}
+                // onPress={() => {
+                //   const navData = this.state.name;
+                // this.props.navigation.navigate('Dashboard', navData);
+                // }}
+                onPress={() => this.createUser()}
                 style={{
                   backgroundColor: '#000',
                   width: '70%',
@@ -132,37 +188,39 @@ export class SignUp extends React.Component {
                 </Text>
               </TouchableOpacity>
             </View>
-          </View>
-          <View
-            style={{
-              // backgroundColor:'#faf',
-              height: '10%',
-              justifyContent: 'center',
-              flexDirection: 'row',
-            }}>
-            <Text
+            {/* SignIN */}
+            <View
               style={{
-                fontSize: 15,
-              }}>
-              Already have an Account?{' '}
-            </Text>
-
-            <TouchableOpacity
-              onPress={() => {
-                // const SignIn = 'signIn';
-                // this.sendData2(SignIn);
-                this.props.navigation.navigate('BasicsTwo');
+                // backgroundColor:'#faf',
+                height: '10%',
+                justifyContent: 'center',
+                flexDirection: 'row',
+                marginTop: 10,
               }}>
               <Text
                 style={{
-                  fontSize: 18,
-                  fontWeight: 'bold',
-                  textDecorationLine: 'underline',
-                  color: 'red',
+                  fontSize: 15,
                 }}>
-                Sign In
+                Already have an Account?{' '}
               </Text>
-            </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => {
+                  // const SignIn = 'signIn';
+                  // this.sendData2(SignIn);
+                  this.props.navigation.navigate('BasicsTwo');
+                }}>
+                <Text
+                  style={{
+                    fontSize: 18,
+                    fontWeight: 'bold',
+                    textDecorationLine: 'underline',
+                    color: 'red',
+                  }}>
+                  Sign In
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </KeyboardAwareScrollView>
