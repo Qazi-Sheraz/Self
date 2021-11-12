@@ -1,14 +1,18 @@
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable react/jsx-no-undef */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {BasicsTwo} from '../basicsTwo';
+import {AppInput, AppBtn} from '../../components';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export class SignUp extends React.Component {
   state = {
     name: '',
     email: '',
     password: '',
+    secureTxt: true,
   };
 
   sendData = (param, param2) => {
@@ -111,41 +115,83 @@ export class SignUp extends React.Component {
           {/* {Bottom View} */}
           <View
             style={{
-              height: '60%',
+              height: 350,
               // backgroundColor: 'red',
-              padding: 25,
+              padding: 20,
             }}>
-            <TextInput
+            <AppInput
+              ic={'ios-person'}
               onChangeText={txt => this.setState({name: txt})}
-              style={{
-                // backgroundColor: '#fff',
-                borderBottomWidth: 0.5,
-                color: 'red',
-              }}
               placeholder={'Name'}
             />
-            <TextInput
+            <AppInput
+              ic={'ios-mail'}
               onChangeText={txt => this.setState({email: txt})}
-              style={{
-                // backgroundColor: '#fff',
-                marginTop: 10,
-                borderBottomWidth: 0.5,
-                color: 'red',
-              }}
               placeholder={'Email'}
-              keyboardType={'email-address'}
-            />
-            <TextInput
-              onChangeText={txt => this.setState({password: txt})}
-              style={{
-                // backgroundColor: '#fff',
+              st={{
                 marginTop: 10,
-                borderBottomWidth: 0.5,
-                color: 'red',
+                marginBottom: 10,
               }}
-              placeholder={'Password'}
-              secureTextEntry
             />
+            <View
+              style={{
+                height: 55,
+                // backgroundColor: '#faf',
+                flexDirection: 'row',
+                borderWidth: 0.5,
+                borderRadius: 10,
+              }}>
+              <View
+                style={{
+                  height: '100%',
+                  width: '15%',
+                  // backgroundColor: '#aaf',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRightWidth: 0.5,
+                }}>
+                <Ionicons name={'lock-closed'} size={20} color={'red'} />
+              </View>
+              <View
+                style={{
+                  height: '100%',
+                  width: '75%',
+                  // backgroundColor: '#faf',
+                }}>
+                <TextInput
+                  onChangeText={txt => this.setState({password: txt})}
+                  style={{
+                    height: '100%',
+                    width: '100%',
+                    padding: 10,
+                  }}
+                  placeholder={'Password'}
+                  secureTextEntry={this.state.secureTxt}
+                />
+              </View>
+              {this.state.password !== '' ? (
+                <TouchableOpacity
+                  onPress={() =>
+                    this.setState({secureTxt: !this.state.secureTxt})
+                  }
+                  style={{
+                    height: '100%',
+                    width: '10%',
+                    // backgroundColor: '#aaf',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}>
+                  <Ionicons
+                    name={
+                      this.state.secureTxt ? 'eye-outline' : 'eye-off-outline'
+                    }
+                    size={20}
+                    color={'red'}
+                  />
+                </TouchableOpacity>
+              ) : null}
+            </View>
+
             {/* Forget pass... */}
             <TouchableOpacity
               onPress={() => {
@@ -166,61 +212,47 @@ export class SignUp extends React.Component {
                 width: '100%',
                 alignItems: 'center',
               }}>
-              <TouchableOpacity
-                // onPress={() => {
-                //   const navData = this.state.name;
-                // this.props.navigation.navigate('Dashboard', navData);
-                // }}
-                onPress={() => this.createUser()}
+              <View
                 style={{
-                  backgroundColor: '#000',
-                  width: '70%',
-                  height: 50,
+                  // backgroundColor: '#faf',
+                  marginTop: 20,
+                  width: '100%',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: 7,
                 }}>
-                <Text
-                  style={{
-                    color: '#fff',
-                  }}>
-                  Create Account
-                </Text>
-              </TouchableOpacity>
+                <AppBtn
+                  onPress={() => this.createUser()}
+                  txt={'Create Account'}
+                />
+              </View>
             </View>
-            {/* SignIN */}
-            <View
+          </View>
+          <View
+            style={{
+              // backgroundColor: '#faf',
+              height: 100,
+              flexDirection: 'row',
+              justifyContent: 'center',
+            }}>
+            <Text
               style={{
-                // backgroundColor:'#faf',
-                height: '10%',
-                justifyContent: 'center',
-                flexDirection: 'row',
-                marginTop: 10,
+                marginTop: 5,
+              }}>
+              Already have an account?{'  '}
+            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('BasicsTwo');
               }}>
               <Text
                 style={{
-                  fontSize: 15,
+                  color: 'red',
+                  fontSize: 18,
+                  fontWeight: 'bold',
+                  textDecorationLine: 'underline',
                 }}>
-                Already have an Account?{' '}
+                Sign In
               </Text>
-
-              <TouchableOpacity
-                onPress={() => {
-                  // const SignIn = 'signIn';
-                  // this.sendData2(SignIn);
-                  this.props.navigation.navigate('BasicsTwo');
-                }}>
-                <Text
-                  style={{
-                    fontSize: 18,
-                    fontWeight: 'bold',
-                    textDecorationLine: 'underline',
-                    color: 'red',
-                  }}>
-                  Sign In
-                </Text>
-              </TouchableOpacity>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
       </KeyboardAwareScrollView>

@@ -20,15 +20,15 @@ export const ScreenNavigator = () => {
           component={SignUp}
           options={{headerShown: false}}
         />
+        <Stack.Screen
+          name="Dashboard"
+          component={Dashboard}
+          options={{headerShown: false}}
+        />
 
         <Stack.Screen
           name="EditProfile"
           component={EditProfile}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Dashboard"
-          component={Dashboard}
           options={{headerShown: false}}
         />
 

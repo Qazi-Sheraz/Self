@@ -1,12 +1,16 @@
+/* eslint-disable react/no-did-mount-set-state */
 /* eslint-disable react-native/no-inline-styles */
-import React, {Component} from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {View, TextInput} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {AppBtn, NavHeader} from '../../components';
 
 export class EditProfile extends React.Component {
   state = {
     name: '',
     password: '',
+    // email: '',
+
     user: {},
   };
 
@@ -14,6 +18,7 @@ export class EditProfile extends React.Component {
     const navProps = this.props.route.params;
     this.setState({
       user: navProps,
+      // email: navProps.email,
       name: navProps.name,
       password: navProps.password,
     });
@@ -30,36 +35,18 @@ export class EditProfile extends React.Component {
             // backgroundColor: '#fad',
             flex: 1,
           }}>
-          {/* spacer*/}
-          <View
-            style={{
-              height: '15%',
-              // backgroundColor: '#afa',
+          <NavHeader
+            leftIc={'ios-arrow-back'}
+            title={'EditProfile'}
+            rightIc={'ios-list'}
+            leftPressed={() => {
+              this.props.navigation.goBack();
+            }}
+            rightPressed={() => {
+              console.warn('rightPressed');
             }}
           />
-          {/* {Top View} */}
-          <View
-            style={{
-              // height: '15%',
-              // backgroundColor: 'red',
-              paddingLeft: 25,
-            }}>
-            <Text
-              style={{
-                fontSize: 25,
-                fontWeight: 'bold',
-                color: '#000',
-              }}>
-              EditProfile
-            </Text>
-          </View>
-          {/* spacer */}
-          <View
-            style={{
-              height: 40,
-              // backgroundColor: '#fff',
-            }}
-          />
+
           {/* {Bottom View} */}
           <View
             style={{
@@ -103,33 +90,14 @@ export class EditProfile extends React.Component {
             />
 
             {/* Update */}
-            <View
-              style={{
-                marginTop: 40,
-                width: '100%',
-                alignItems: 'center',
-              }}>
-              <TouchableOpacity
-                onPress={() => {
-                  this.props.navigation.replace('Dashboard');
-                }}
-                style={{
-                  backgroundColor: '#000',
-                  width: '70%',
-                  height: 50,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: 7,
-                }}>
-                <Text
-                  style={{
-                    color: '#fff',
-                    fontSize: 18,
-                  }}>
-                  Update
-                </Text>
-              </TouchableOpacity>
-            </View>
+
+            <AppBtn
+              txt={'UpDate'}
+              onPress={() => this.props.navigation.replace('Dashboard')}
+              st={{
+                marginTop: 20,
+              }}
+            />
           </View>
         </View>
       </KeyboardAwareScrollView>

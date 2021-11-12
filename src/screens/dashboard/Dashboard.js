@@ -1,8 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {NavHeader} from '../../components';
 
 export class Dashboard extends React.Component {
   state = {
@@ -21,9 +20,9 @@ export class Dashboard extends React.Component {
         email: navProps.email,
         password: navProps.password,
       });
-      console.warn('yes');
+      // console.warn('yes');
     } else {
-      console.warn('kick');
+      // console.warn('kick');
     }
   };
 
@@ -34,46 +33,17 @@ export class Dashboard extends React.Component {
           //   backgroundColor: '#faf',
           flex: 1,
         }}>
-        <View
-          style={{
-            // backgroundColor: '#afa',
-            height: 50,
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <TouchableOpacity
-            style={{
-              // backgroundColor: '#faf',
-              height: '100%',
-              width: '15%',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <Ionicons name={'ios-list'} size={25} color={'red'} />
-          </TouchableOpacity>
-          <View
-            style={{
-              // backgroundColor: '#a23',
-              height: '100%',
-              width: '70%',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <Text>{this.state.user.name}</Text>
-          </View>
-
-          <TouchableOpacity
-            style={{
-              // backgroundColor: '#faf',
-              height: '100%',
-              width: '15%',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <MaterialIcons name={'support-agent'} size={25} color={'red'} />
-          </TouchableOpacity>
-        </View>
+        <NavHeader
+          leftIc={'ios-arrow-back'}
+          title={'Dashboard'}
+          rightIc={'ios-list'}
+          leftPressed={() => {
+            this.props.navigation.goBack();
+          }}
+          rightPressed={() => {
+            console.warn('rightPressed');
+          }}
+        />
         <View
           style={{
             // backgroundColor: '#808',
