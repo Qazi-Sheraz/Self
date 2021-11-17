@@ -14,6 +14,8 @@ export class NavHeader extends React.Component {
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center',
+          borderBottomWidth: 0.7,
+          // borderBottomColor: 'red',
         }}>
         <TouchableOpacity
           onPress={this.props.leftPressed}
@@ -34,7 +36,13 @@ export class NavHeader extends React.Component {
             alignItems: 'center',
             justifyContent: 'center',
           }}>
-          <Text>{this.props.title}</Text>
+          <Text
+            style={{
+              color: this.props.custom ? '#fff' : '#000',
+              fontSize: 18,
+            }}>
+            {this.props.title}
+          </Text>
         </View>
 
         <TouchableOpacity

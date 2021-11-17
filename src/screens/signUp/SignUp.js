@@ -2,9 +2,9 @@
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, TouchableOpacity, TextInput} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput, Image} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {AppInput, AppBtn} from '../../components';
+import {AppInput, AppBtn, NavHeader} from '../../components';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export class SignUp extends React.Component {
@@ -75,43 +75,34 @@ export class SignUp extends React.Component {
             // backgroundColor: '#fad',
             flex: 1,
           }}>
-          {/* spacer*/}
+          <NavHeader title={'SignUp'} />
           <View
             style={{
-              height: '15%',
-              // backgroundColor: '#afa',
-            }}
-          />
-          {/* {Top View} */}
-          <View
-            style={{
-              // height: '15%',
-              // backgroundColor: 'red',
-              paddingLeft: 25,
+              height: '20%',
+              // width: '100%',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}>
-            <Text
+            <View
               style={{
-                fontSize: 25,
-                fontWeight: 'bold',
-                color: '#000',
+                // backgroundColor: '#faf',
+                height: 140,
+                width: 140,
               }}>
-              WELCOME
-            </Text>
-            <Text
-              style={{
-                fontSize: 18,
-                // fontWeight: 'bold',
-              }}>
-              glad to see you!
-            </Text>
+              <Image
+                // source={{
+                //   uri: '',
+                // }}
+                source={require('../../asserts/user.jpg')}
+                style={{
+                  resizeMode: 'contain',
+                  height: '80%',
+                  width: '80%',
+                }}
+              />
+            </View>
           </View>
-          {/* spacer */}
-          <View
-            style={{
-              height: 40,
-              // backgroundColor: '#fff',
-            }}
-          />
+
           {/* {Bottom View} */}
           <View
             style={{

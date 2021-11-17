@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, ImageBackground} from 'react-native';
 import {NavHeader} from '../../components';
 
 export class Dashboard extends React.Component {
@@ -28,86 +28,95 @@ export class Dashboard extends React.Component {
 
   render() {
     return (
-      <View
+      <ImageBackground
+        source={require('../../asserts/Rnipol.jpg')}
         style={{
-          //   backgroundColor: '#faf',
           flex: 1,
         }}>
-        <NavHeader
-          leftIc={'ios-arrow-back'}
-          title={'Dashboard'}
-          rightIc={'ios-list'}
-          leftPressed={() => {
-            this.props.navigation.goBack();
-          }}
-          rightPressed={() => {
-            console.warn('rightPressed');
-          }}
-        />
         <View
           style={{
-            // backgroundColor: '#808',
-            height: '15%',
-            alignItems: 'center',
-            justifyContent: 'center',
+            //   backgroundColor: '#faf',
+            flex: 1,
           }}>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.replace('BasicsTwo');
+          <NavHeader
+            leftIc={'ios-arrow-back'}
+            title={'Dashboard'}
+            rightIc={'ios-list'}
+            leftPressed={() => {
+              this.props.navigation.goBack();
             }}
+            rightPressed={() => {
+              console.warn('rightPressed');
+            }}
+            custom
+          />
+          <View
             style={{
-              height: '90%',
-              width: '90%',
-              borderRadius: 15,
-              borderColor: 'red',
-              borderWidth: 2,
+              // backgroundColor: '#808',
+              height: '15%',
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <Text
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.replace('BasicsTwo');
+              }}
               style={{
-                fontSize: 20,
-                fontWeight: 'bold',
+                height: '90%',
+                width: '90%',
+                borderRadius: 15,
+                borderColor: 'red',
+                borderWidth: 2,
+                alignItems: 'center',
+                justifyContent: 'center',
               }}>
-              List
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View
-          style={{
-            // backgroundColor: '#808',
-            height: '15%',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <TouchableOpacity
-            onPress={() => {
-              const navProps = {
-                name: this.state.name,
-                email: this.state.email,
-                password: this.state.password,
-              };
-              this.props.navigation.navigate('EditProfile', navProps);
-            }}
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  color: '#fff',
+                }}>
+                List
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View
             style={{
-              height: '90%',
-              width: '90%',
-              borderRadius: 15,
-              borderColor: 'red',
-              borderWidth: 2,
+              // backgroundColor: '#808',
+              height: '15%',
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <Text
+            <TouchableOpacity
+              onPress={() => {
+                const navProps = {
+                  name: this.state.name,
+                  email: this.state.email,
+                  password: this.state.password,
+                };
+                this.props.navigation.navigate('EditProfile', navProps);
+              }}
               style={{
-                fontSize: 19,
-                fontWeight: 'bold',
+                height: '90%',
+                width: '90%',
+                borderRadius: 15,
+                borderColor: 'red',
+                borderWidth: 2,
+                alignItems: 'center',
+                justifyContent: 'center',
               }}>
-              EditProfile
-            </Text>
-          </TouchableOpacity>
+              <Text
+                style={{
+                  fontSize: 19,
+                  fontWeight: 'bold',
+                  color: '#fff',
+                }}>
+                EditProfile
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </ImageBackground>
     );
   }
 }
