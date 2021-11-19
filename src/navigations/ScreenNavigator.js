@@ -9,6 +9,7 @@ import {BasicsTwo} from '../screens/basicsTwo';
 import {Dashboard} from '../screens/dashboard';
 import {EditProfile} from '../screens/editProfile';
 import {List} from '../screens/list';
+import {DetailsScreen} from '../screens/list';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,12 @@ export const ScreenNavigator = () => {
           component={List}
           options={{headerShown: false}}
         />
+        <Stack.Screen
+          name="DetailsScreen"
+          component={DetailsScreen}
+          options={{headerShown: false}}
+        />
+
         <Stack.Screen
           name="SignUp"
           component={SignUp}
