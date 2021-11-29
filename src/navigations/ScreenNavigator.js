@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // In App.js in a new project
 
 import React from 'react';
@@ -10,6 +11,8 @@ import {Dashboard} from '../screens/dashboard';
 import {EditProfile} from '../screens/editProfile';
 import {List} from '../screens/list';
 import {DetailsScreen} from '../screens/list';
+import {ColumnList} from '../screens/list';
+import {MultiList} from '../screens/list';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +25,25 @@ export const ScreenNavigator = () => {
           component={List}
           options={{headerShown: false}}
         />
+
+        <Stack.Screen
+          name="Dashboard"
+          component={Dashboard}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="MultiList"
+          component={MultiList}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="ColumnList"
+          component={ColumnList}
+          options={{headerShown: false}}
+        />
+
         <Stack.Screen
           name="DetailsScreen"
           component={DetailsScreen}
@@ -31,11 +53,6 @@ export const ScreenNavigator = () => {
         <Stack.Screen
           name="SignUp"
           component={SignUp}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Dashboard"
-          component={Dashboard}
           options={{headerShown: false}}
         />
 

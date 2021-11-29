@@ -59,7 +59,7 @@ export class Dashboard extends React.Component {
             }}>
             <TouchableOpacity
               onPress={() => {
-                this.props.navigation.replace('BasicsTwo');
+                this.props.navigation.navigate('List');
               }}
               style={{
                 height: '90%',
@@ -77,6 +77,66 @@ export class Dashboard extends React.Component {
                   color: '#fff',
                 }}>
                 List
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View
+            style={{
+              // backgroundColor: '#808',
+              height: '15%',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('MultiList');
+              }}
+              style={{
+                height: '90%',
+                width: '90%',
+                borderRadius: 15,
+                borderColor: 'red',
+                borderWidth: 2,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  color: '#fff',
+                }}>
+                Multi List
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View
+            style={{
+              // backgroundColor: '#808',
+              height: '15%',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('ColumnList');
+              }}
+              style={{
+                height: '90%',
+                width: '90%',
+                borderRadius: 15,
+                borderColor: 'red',
+                borderWidth: 2,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  color: '#fff',
+                }}>
+                Column List
               </Text>
             </TouchableOpacity>
           </View>
