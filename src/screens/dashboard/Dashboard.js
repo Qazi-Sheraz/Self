@@ -27,6 +27,7 @@ export class Dashboard extends React.Component {
   };
 
   render() {
+    const navigation = this.props.navigation;
     return (
       <ImageBackground
         source={require('../../asserts/Rnipol.jpg')}
@@ -39,14 +40,14 @@ export class Dashboard extends React.Component {
             flex: 1,
           }}>
           <NavHeader
-            leftIc={'ios-arrow-back'}
             title={'Dashboard'}
-            rightIc={'ios-list'}
+            leftIc={'ios-list'}
             leftPressed={() => {
-              this.props.navigation.goBack();
+              navigation.openDrawer();
             }}
+            rightIc={'ios-arrow-forward'}
             rightPressed={() => {
-              console.warn('rightPressed');
+              console.warn('right');
             }}
             custom
           />
