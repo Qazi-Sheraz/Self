@@ -499,6 +499,7 @@ export class MultiList extends React.Component {
   );
 
   render() {
+    const navigation = this.props.navigation;
     return (
       <View
         style={{
@@ -506,9 +507,9 @@ export class MultiList extends React.Component {
         }}>
         <NavHeader
           title={'MultiList'}
-          leftIc={'ios-arrow-back'}
+          leftIc={'ios-list'}
           leftPressed={() => {
-            this.props.navigation.goBack();
+            navigation.openDrawer();
           }}
         />
         <View

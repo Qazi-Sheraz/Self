@@ -7,14 +7,14 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SignUp} from '../screens/signUp';
 import {Basics} from '../screens/basics';
 import {BasicsTwo} from '../screens/basicsTwo';
-import {Dashboard} from '../screens/dashboard';
 import {EditProfile} from '../screens/editProfile';
 import {List} from '../screens/list';
 import {DetailsScreen} from '../screens/list';
 import {ColumnList} from '../screens/list';
 import {MultiList} from '../screens/list';
 import {Settings} from '../screens/settings';
-import {DrawerNavigator} from './DrawerNavigator';
+import {Splash} from '../screens/splash';
+import {TabNavigator} from './TabNavigator';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,10 +23,22 @@ export const ScreenNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="DrawerNavigator"
-          component={DrawerNavigator}
+          name="Splash"
+          component={Splash}
           options={{headerShown: false}}
         />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="TabNavigator"
+          component={TabNavigator}
+          options={{headerShown: false}}
+        />
+
         <Stack.Screen
           name="Settings"
           component={Settings}
@@ -35,12 +47,6 @@ export const ScreenNavigator = () => {
         <Stack.Screen
           name="List"
           component={List}
-          options={{headerShown: false}}
-        />
-
-        <Stack.Screen
-          name="Dashboard"
-          component={Dashboard}
           options={{headerShown: false}}
         />
 
@@ -59,12 +65,6 @@ export const ScreenNavigator = () => {
         <Stack.Screen
           name="DetailsScreen"
           component={DetailsScreen}
-          options={{headerShown: false}}
-        />
-
-        <Stack.Screen
-          name="SignUp"
-          component={SignUp}
           options={{headerShown: false}}
         />
 

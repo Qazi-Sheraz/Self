@@ -2,7 +2,6 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 export class NavHeader extends React.Component {
   render() {
