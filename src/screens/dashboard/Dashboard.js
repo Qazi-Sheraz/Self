@@ -2,6 +2,7 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, ImageBackground} from 'react-native';
 import {NavHeader} from '../../components';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export class Dashboard extends React.Component {
   state = {
@@ -45,9 +46,11 @@ export class Dashboard extends React.Component {
             leftPressed={() => {
               navigation.openDrawer();
             }}
-            rightIc={'ios-arrow-forward'}
+            rightIc={'md-log-out-outline'}
             rightPressed={() => {
-              console.warn('right');
+              AsyncStorage.removeItem('userData', () => {
+                this.props.navigation.replace('SignUp');
+              });
             }}
             custom
           />
