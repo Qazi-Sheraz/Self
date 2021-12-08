@@ -104,6 +104,8 @@ export class SignUp extends React.Component {
         } else {
           alert('Invalid email');
         }
+      } else {
+        alert('error');
       }
     });
   };

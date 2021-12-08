@@ -15,6 +15,7 @@ import {MultiList} from '../screens/list';
 import {Settings} from '../screens/settings';
 import {Splash} from '../screens/splash';
 import {TabNavigator} from './TabNavigator';
+import {ImgPick} from '../screens/imgPick/ImgPick';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,20 +24,30 @@ export const ScreenNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="SignUp"
-          component={SignUp}
-          options={{headerShown: false}}
-        />
-
-        <Stack.Screen
           name="Splash"
           component={Splash}
           options={{headerShown: false}}
         />
+        <Stack.Screen
+          name="ImgPick"
+          component={ImgPick}
+          options={{headerShown: false}}
+        />
 
+        <Stack.Screen
+          name="EditProfile"
+          component={EditProfile}
+          options={{headerShown: false}}
+        />
+        
         <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
           options={{headerShown: false}}
         />
 
@@ -45,6 +56,7 @@ export const ScreenNavigator = () => {
           component={Settings}
           options={{headerShown: false}}
         />
+
         <Stack.Screen
           name="List"
           component={List}
@@ -66,12 +78,6 @@ export const ScreenNavigator = () => {
         <Stack.Screen
           name="DetailsScreen"
           component={DetailsScreen}
-          options={{headerShown: false}}
-        />
-
-        <Stack.Screen
-          name="EditProfile"
-          component={EditProfile}
           options={{headerShown: false}}
         />
 

@@ -4,23 +4,33 @@ import React from 'react';
 import {View, TextInput} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {AppBtn, NavHeader} from '../../components';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export class EditProfile extends React.Component {
   state = {
     name: '',
     password: '',
-    // email: '',
-
+    email: '',
     user: {},
   };
 
   componentDidMount = () => {
-    const navProps = this.props.route.params;
+    const data = this.props.route.params;
     this.setState({
-      user: navProps,
-      // email: navProps.email,
-      name: navProps.name,
-      password: navProps.password,
+      user: data,
+      name: data.name,
+      // email: data.email,
+      password: data.password,
+    });
+  };
+  updateUser = () => {
+    const data = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+    };
+    AsyncStorage.setItem('userData', JSON.stringify(data), () => {
+      this.props.navigation.replace('TabNavigator');
     });
   };
 
@@ -74,7 +84,7 @@ export class EditProfile extends React.Component {
               }}
               placeholder={'Email'}
               keyboardType={'email-address'}
-              value={this.state.user.email}
+              value={this.state.email}
             />
             <TextInput
               onChangeText={txt => this.setState({password: txt})}
@@ -93,7 +103,7 @@ export class EditProfile extends React.Component {
 
             <AppBtn
               txt={'UpDate'}
-              onPress={() => this.props.navigation.replace('Dashboard')}
+              onPress={() => this.updateUser()}
               st={{
                 marginTop: 20,
               }}
