@@ -24,13 +24,14 @@ export const ScreenNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Splash"
-          component={Splash}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
           name="ImgPick"
           component={ImgPick}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="Splash"
+          component={Splash}
           options={{headerShown: false}}
         />
 
@@ -39,7 +40,7 @@ export const ScreenNavigator = () => {
           component={EditProfile}
           options={{headerShown: false}}
         />
-        
+
         <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}
