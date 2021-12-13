@@ -19,7 +19,7 @@ import {
   widthPercentageToDP as w,
   heightPercentageToDP as h,
 } from 'react-native-responsive-screen';
-
+import validator from 'email-validator';
 export class SignUp extends React.Component {
   state = {
     name: '',
@@ -66,6 +66,7 @@ export class SignUp extends React.Component {
     //   alert('All ok');
     // }
     // };
+    const res = validator.validate(this.state.email);
     const data = {
       name: this.state.name,
       email: this.state.email,
@@ -74,7 +75,8 @@ export class SignUp extends React.Component {
 
     this.state.name === ''
       ? alert('Name is required')
-      : this.state.email === ''
+      : // : !res
+      res === false
       ? alert('Email is required')
       : this.state.password.length < 8
       ? alert('Password must contain 8 characters')
@@ -97,7 +99,7 @@ export class SignUp extends React.Component {
         const data = JSON.parse(res);
         if (data.email === this.state.inEmail) {
           if (data.password === this.state.inPassword) {
-            this.props.navigation.navigate('TabNavigator');
+            this.props.navigation.replace('TabNavigator');
           } else {
             alert('Incorrect password');
           }

@@ -16,6 +16,7 @@ import {Settings} from '../screens/settings';
 import {Splash} from '../screens/splash';
 import {TabNavigator} from './TabNavigator';
 import {ImgPick} from '../screens/imgPick/ImgPick';
+import {DateTimePick} from '../screens/dateTimePick';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,14 +25,23 @@ export const ScreenNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
+          name="DateTimePick"
+          component={DateTimePick}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
           name="ImgPick"
           component={ImgPick}
           options={{headerShown: false}}
         />
-
         <Stack.Screen
           name="Splash"
           component={Splash}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
           options={{headerShown: false}}
         />
 
@@ -44,11 +54,6 @@ export const ScreenNavigator = () => {
         <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="SignUp"
-          component={SignUp}
           options={{headerShown: false}}
         />
 
