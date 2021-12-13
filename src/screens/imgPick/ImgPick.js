@@ -113,7 +113,7 @@ export class ImgPick extends React.Component {
           style={{
             height: '30%',
             width: '100%',
-            alignContent: 'center',
+            alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: '#Faf',
             marginBottom: h('10'),
@@ -138,7 +138,7 @@ export class ImgPick extends React.Component {
           style={{
             height: '30%',
             width: '100%',
-            alignContent: 'center',
+            alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: '#Faf',
           }}>
