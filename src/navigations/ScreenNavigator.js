@@ -17,6 +17,7 @@ import {Splash} from '../screens/splash';
 import {TabNavigator} from './TabNavigator';
 import {ImgPick} from '../screens/imgPick/ImgPick';
 import {DateTimePick} from '../screens/dateTimePick';
+import {LearnCalendar} from '../screens/dateTimePick';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,11 @@ export const ScreenNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="LearnCalendar"
+          component={LearnCalendar}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="DateTimePick"
           component={DateTimePick}
