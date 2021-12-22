@@ -25,11 +25,23 @@ export const ScreenNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+      <Stack.Screen
+          name="TabNavigator"
+          component={TabNavigator}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="EditProfile"
+          component={EditProfile}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="LearnCalendar"
           component={LearnCalendar}
           options={{headerShown: false}}
         />
+        
+
         <Stack.Screen
           name="DateTimePick"
           component={DateTimePick}
@@ -48,18 +60,6 @@ export const ScreenNavigator = () => {
         <Stack.Screen
           name="SignUp"
           component={SignUp}
-          options={{headerShown: false}}
-        />
-
-        <Stack.Screen
-          name="EditProfile"
-          component={EditProfile}
-          options={{headerShown: false}}
-        />
-
-        <Stack.Screen
-          name="TabNavigator"
-          component={TabNavigator}
           options={{headerShown: false}}
         />
 

@@ -3,7 +3,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity, ImageBackground} from 'react-native';
 import {NavHeader} from '../../components';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import DeviceInfo from 'react-native-device-info';
 export class Dashboard extends React.Component {
   state = {
     user: {},
@@ -13,6 +13,7 @@ export class Dashboard extends React.Component {
   };
 
   componentDidMount = () => {
+    // this.deviceData();
     AsyncStorage.getItem('userData', (err, res) => {
       if (!err && res !== null) {
         const data = JSON.parse(res);
@@ -25,7 +26,13 @@ export class Dashboard extends React.Component {
       }
     });
   };
-
+  deviceData = () => {
+    // let res = DeviceInfo.getBuildNumber();
+    // let res = DeviceInfo.getBundleId();
+    // let res = DeviceInfo.getDeviceId();
+    let res = DeviceInfo.getVersion();
+    console.warn(res);
+  };
   render() {
     const navigation = this.props.navigation;
     return (
@@ -175,6 +182,66 @@ export class Dashboard extends React.Component {
                   color: '#fff',
                 }}>
                 EditProfile
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View
+            style={{
+              // backgroundColor: '#808',
+              height: '15%',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('DateTimePick');
+              }}
+              style={{
+                height: '90%',
+                width: '90%',
+                borderRadius: 15,
+                borderColor: 'red',
+                borderWidth: 2,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  color: '#fff',
+                }}>
+                Date Time Pick
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View
+            style={{
+              // backgroundColor: '#808',
+              height: '15%',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('LearnCalendar');
+              }}
+              style={{
+                height: '90%',
+                width: '90%',
+                borderRadius: 15,
+                borderColor: 'red',
+                borderWidth: 2,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  color: '#fff',
+                }}>
+                Calendar
               </Text>
             </TouchableOpacity>
           </View>

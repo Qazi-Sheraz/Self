@@ -1,18 +1,19 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text} from 'react-native';
-import {AppBtn, NavHeader} from '../../components';
+import {View} from 'react-native';
+import {NavHeader} from '../../components';
 import {
   widthPercentageToDP as w,
   heightPercentageToDP as h,
 } from 'react-native-responsive-screen';
 import {Calendar} from 'react-native-calendars';
-
+import {Avatar, ButtonGroup} from 'react-native-elements';
 export class LearnCalendar extends React.Component {
   state = {
     date: '',
     allDates: ['2021-12-12', '2021-12-15', '2021-12-24'],
     markedDates: {},
+    selectedIndex: 0,
   };
 
   componentDidMount = () => {
@@ -35,7 +36,38 @@ export class LearnCalendar extends React.Component {
 
     this.setState({markedDates: markedDate});
   };
+  buttons = ['Waiting Room', 'Emergency', 'ICU', 'Study'];
 
+  selectButton = selected => {
+    switch (selected) {
+      case 0:
+        this.setState({
+          selectedIndex: selected,
+        });
+        break;
+
+      case 1:
+        this.setState({
+          selectedIndex: selected,
+        });
+        break;
+
+      case 2:
+        this.setState({
+          selectedIndex: selected,
+        });
+        break;
+
+      case 3:
+        this.setState({
+          selectedIndex: selected,
+        });
+        break;
+
+      default:
+        break;
+    }
+  };
   render() {
     return (
       <View
@@ -62,7 +94,7 @@ export class LearnCalendar extends React.Component {
             );
           }}
           markedDates={this.state.markedDates}
-          //   minDate={moment(new Date() - 1).format('YYYY-MM-DD')}
+          // minDate={moment(new Date() - 1).format('YYYY-MM-DD')}
           //   maxDate={'2021-12-20'}
           theme={{
             backgroundColor: '#fff',
@@ -84,6 +116,37 @@ export class LearnCalendar extends React.Component {
             textDayHeaderFontSize: h('2'),
           }}
         />
+        <View
+          style={{
+            backgroundColor: '#faf',
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Avatar
+            size="small"
+            // rounded
+            title="MT"
+            overlayContainerStyle={{backgroundColor: 'green'}}
+          />
+          <Avatar
+            rounded
+            icon={{name: 'home'}}
+            size="large"
+            overlayContainerStyle={{backgroundColor: 'red'}}
+          />
+          <ButtonGroup
+            // onPress={selected => this.selectButton(selected)}
+            onPress={this.selectButton}
+            selectedIndex={this.state.selectedIndex}
+            buttons={this.buttons}
+            selectedButtonStyle={{backgroundColor: 'red'}}
+            selectedTextStyle={{
+              color: 'white',
+            }}
+          />
+        </View>
+
       </View>
     );
   }
