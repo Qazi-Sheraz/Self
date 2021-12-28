@@ -30,7 +30,7 @@ export class Splash extends React.Component {
           justifyContent: 'center',
         }}>
         <Image
-          source={require('../../asserts/logo.jpg')}
+          source={require('../../asserts/logofire.png')}
           style={{
             resizeMode: 'contain',
             height: h('20%'),

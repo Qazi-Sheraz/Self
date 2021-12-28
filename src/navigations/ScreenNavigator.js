@@ -25,7 +25,17 @@ export const ScreenNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-      <Stack.Screen
+        <Stack.Screen
+          name="Splash"
+          component={Splash}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}
           options={{headerShown: false}}
@@ -40,7 +50,6 @@ export const ScreenNavigator = () => {
           component={LearnCalendar}
           options={{headerShown: false}}
         />
-        
 
         <Stack.Screen
           name="DateTimePick"
@@ -50,16 +59,6 @@ export const ScreenNavigator = () => {
         <Stack.Screen
           name="ImgPick"
           component={ImgPick}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Splash"
-          component={Splash}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="SignUp"
-          component={SignUp}
           options={{headerShown: false}}
         />
 

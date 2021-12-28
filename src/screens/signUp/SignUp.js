@@ -1,5 +1,4 @@
-/* eslint-disable react/self-closing-comp */
-/* eslint-disable react/jsx-no-undef */
+/* eslint-disable no-alert */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
@@ -9,26 +8,29 @@ import {
   TextInput,
   Image,
   Modal,
-  Alert,
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {AppInput, AppBtn, NavHeader} from '../../components';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import {
   widthPercentageToDP as w,
   heightPercentageToDP as h,
 } from 'react-native-responsive-screen';
 import validator from 'email-validator';
+import {baseUrl, axiosInstance} from '../../services/Api';
+
 export class SignUp extends React.Component {
   state = {
     name: '',
     email: '',
+    phone: '',
     password: '',
     secureTxt: true,
 
     modalVisible: false,
-    inEmail: '',
+    inPhone: '',
     inPassword: '',
   };
 
@@ -67,49 +69,87 @@ export class SignUp extends React.Component {
     // }
     // };
     const res = validator.validate(this.state.email);
-    const data = {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password,
-    };
 
     this.state.name === ''
       ? alert('Name is required')
       : // : !res
       res === false
-      ? alert('Email is required')
+      ? alert('Invalid Email')
       : this.state.password.length < 8
       ? alert('Password must contain 8 characters')
-      : AsyncStorage.setItem('userData', JSON.stringify(data), () => {
-          Alert.alert(
-            'Alert....',
-            'Your account have been created successfully please Sign in',
-            [
-              {
-                text: 'No',
-              },
-              {text: 'Yes', onPress: () => this.setState({modalVisible: true})},
-            ],
-          );
-        });
+      : this.state.phone.length < 11
+      ? alert('Invalid Phone number')
+      : this.signUp();
+
+    // AsyncStorage.setItem('userData', JSON.stringify(data), () => {
+    //   Alert.alert(
+    //     'Alert....',
+    //     'Your account have been created successfully please Sign in',
+    //     [
+    //       {
+    //         text: 'No',
+    //       },
+    //       {text: 'Yes', onPress: () => this.setState({modalVisible: true})},
+    //     ],
+    //   );
+    // }
+    // );
   };
-  signIn = () => {
-    AsyncStorage.getItem('userData', (err, res) => {
-      if (!err && res !== null) {
-        const data = JSON.parse(res);
-        if (data.email === this.state.inEmail) {
-          if (data.password === this.state.inPassword) {
-            this.props.navigation.replace('TabNavigator');
-          } else {
-            alert('Incorrect password');
-          }
+
+  signUp = () => {
+    const params = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      phone: this.state.phone,
+    };
+    axiosInstance
+      .post(baseUrl + 'users/signUp', params)
+      .then(res => {
+        const data = res.data;
+        if (data.status === '200') {
+          alert(data.msg);
         } else {
-          alert('Invalid email');
+          alert(data.msg);
         }
+      })
+      .catch(err => {
+        console.warn(err.message);
+      });
+  };
+
+  signIn = () => {
+    if (this.state.inPhone.length < 11) {
+      alert('Invalid Phone number');
+    } else {
+      if (this.state.inPassword.length < 8) {
+        alert('Password must contain 8 characters');
       } else {
-        alert('error');
+        const data = {
+          phone: this.state.inPhone,
+          password: this.state.inPassword,
+        };
+        axiosInstance
+          .post(baseUrl + 'users/signIn', data)
+          .then(res => {
+            const data = res.data;
+            if (data.status === '200') {
+              AsyncStorage.setItem(
+                'userData',
+                JSON.stringify(data.data),
+                () => {
+                  this.props.navigation.replace('TabNavigator');
+                },
+              );
+            } else {
+              alert(data.msg);
+            }
+          })
+          .catch(err => {
+            console.warn(err.message);
+          });
       }
-    });
+    }
   };
 
   render() {
@@ -126,7 +166,7 @@ export class SignUp extends React.Component {
           }}>
           <View
             style={{
-              height: '20%',
+              height: '18%',
               // width: '100%',
               alignItems: 'center',
               justifyContent: 'center',
@@ -154,7 +194,7 @@ export class SignUp extends React.Component {
           {/* {Bottom View} */}
           <View
             style={{
-              height: 350,
+              height: 400,
               // backgroundColor: 'red',
               padding: 20,
             }}>
@@ -171,6 +211,15 @@ export class SignUp extends React.Component {
                 marginTop: 10,
                 marginBottom: 10,
               }}
+            />
+            <AppInput
+              ic={'ios-call'}
+              onChangeText={txt => this.setState({phone: txt})}
+              placeholder={'Phone'}
+              st={{
+                marginBottom: 10,
+              }}
+              maxLength={11}
             />
             <View
               style={{
@@ -241,7 +290,7 @@ export class SignUp extends React.Component {
               <View
                 style={{
                   // backgroundColor: '#faf',
-                  marginTop: 20,
+                  marginTop: 18,
                   width: '100%',
                   alignItems: 'center',
                 }}>
@@ -323,12 +372,13 @@ export class SignUp extends React.Component {
                 }}>
                 <AppInput
                   ic={'ios-mail'}
-                  onChangeText={txt => this.setState({inEmail: txt})}
-                  placeholder={'Email'}
+                  onChangeText={txt => this.setState({inPhone: txt})}
+                  placeholder={'Phone'}
                   st={{
                     marginTop: 10,
                     marginBottom: 10,
                   }}
+                  maxLength={11}
                 />
                 <View
                   style={{
@@ -433,7 +483,7 @@ export class SignUp extends React.Component {
                     style={{
                       marginTop: h('0.7'),
                     }}>
-                    Don't have an account?{'  '}
+                    Don't have an account?{' '}
                   </Text>
                   <TouchableOpacity
                     onPress={() => {
