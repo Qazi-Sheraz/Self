@@ -10,7 +10,7 @@ import {
   Modal,
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {AppInput, AppBtn, NavHeader} from '../../components';
+import {AppInput, AppBtn, NavHeader, Loading} from '../../components';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -32,6 +32,7 @@ export class SignUp extends React.Component {
     modalVisible: false,
     inPhone: '',
     inPassword: '',
+    visible: false,
   };
 
   sendData = (param, param2) => {
@@ -42,6 +43,10 @@ export class SignUp extends React.Component {
   //   console.warn('Sign In= ' + SignIn);
   // };
   createUser = () => {
+    this.showLoading(true);
+    setTimeout(() => {
+      this.showLoading(false);
+    }, 3000);
     //   if (
     //     this.state.name === '' ||
     //     this.state.email === '' ||
@@ -97,6 +102,7 @@ export class SignUp extends React.Component {
   };
 
   signUp = () => {
+    this.showLoading(true);
     const params = {
       name: this.state.name,
       email: this.state.email,
@@ -106,6 +112,8 @@ export class SignUp extends React.Component {
     axiosInstance
       .post(baseUrl + 'users/signUp', params)
       .then(res => {
+        this.showLoading(false);
+
         const data = res.data;
         if (data.status === '200') {
           alert(data.msg);
@@ -114,6 +122,8 @@ export class SignUp extends React.Component {
         }
       })
       .catch(err => {
+        this.showLoading(false);
+
         console.warn(err.message);
       });
   };
@@ -125,6 +135,8 @@ export class SignUp extends React.Component {
       if (this.state.inPassword.length < 8) {
         alert('Password must contain 8 characters');
       } else {
+        this.showLoading(true);
+
         const data = {
           phone: this.state.inPhone,
           password: this.state.inPassword,
@@ -132,7 +144,10 @@ export class SignUp extends React.Component {
         axiosInstance
           .post(baseUrl + 'users/signIn', data)
           .then(res => {
+            this.showLoading(false);
+
             const data = res.data;
+
             if (data.status === '200') {
               AsyncStorage.setItem(
                 'userData',
@@ -146,10 +161,15 @@ export class SignUp extends React.Component {
             }
           })
           .catch(err => {
+            this.showLoading(false);
+
             console.warn(err.message);
           });
       }
     }
+  };
+  showLoading = value => {
+    this.setState({visible: value});
   };
 
   render() {
@@ -159,6 +179,7 @@ export class SignUp extends React.Component {
           // backgroundColor: '#fad',
           flex: 1,
         }}>
+        <Loading visible={this.state.visible} />
         <NavHeader title={'SignUp'} />
         <KeyboardAwareScrollView
           contentContainerStyle={{
