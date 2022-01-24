@@ -18,6 +18,7 @@ import {TabNavigator} from './TabNavigator';
 import {ImgPick} from '../screens/imgPick/ImgPick';
 import {DateTimePick} from '../screens/dateTimePick';
 import {LearnCalendar} from '../screens/dateTimePick';
+import {Address, ContactUs, Order} from '../screens/test';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,42 @@ export const ScreenNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="Settings"
+          component={Settings}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Address"
+          component={Address}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Order"
+          component={Order}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="ContactUs"
+          component={ContactUs}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="List"
+          component={List}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="EditProfile"
+          component={EditProfile}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="TabNavigator"
+          component={TabNavigator}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="SignUp"
           component={SignUp}
@@ -36,16 +73,6 @@ export const ScreenNavigator = () => {
           options={{headerShown: false}}
         />
 
-        <Stack.Screen
-          name="TabNavigator"
-          component={TabNavigator}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="EditProfile"
-          component={EditProfile}
-          options={{headerShown: false}}
-        />
         <Stack.Screen
           name="LearnCalendar"
           component={LearnCalendar}
@@ -60,18 +87,6 @@ export const ScreenNavigator = () => {
         <Stack.Screen
           name="ImgPick"
           component={ImgPick}
-          options={{headerShown: false}}
-        />
-
-        <Stack.Screen
-          name="Settings"
-          component={Settings}
-          options={{headerShown: false}}
-        />
-
-        <Stack.Screen
-          name="List"
-          component={List}
           options={{headerShown: false}}
         />
 

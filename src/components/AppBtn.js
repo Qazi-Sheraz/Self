@@ -16,14 +16,17 @@ export class AppBtn extends React.Component {
         ]}>
         <TouchableOpacity
           {...this.props}
-          style={{
-            backgroundColor: '#000',
-            width: '70%',
-            height: 50,
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRadius: 7,
-          }}>
+          style={[
+            {
+              backgroundColor: '#000',
+              width: '70%',
+              height: 50,
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: 7,
+            },
+            this.props.btst,
+          ]}>
           <Text
             style={{
               color: '#fff',

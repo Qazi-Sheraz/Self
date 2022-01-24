@@ -1,7 +1,7 @@
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, Image, FlatList,} from 'react-native';
+import {View, Text, Image, FlatList} from 'react-native';
 import {NavHeader} from '../../components';
 import {
   widthPercentageToDP as w,
@@ -565,7 +565,6 @@ export class ColumnList extends React.Component {
   //     </View>
   //   </TouchableOpacity>
   // );
- 
 
   renderColumn = item => (
     <View
@@ -610,11 +609,13 @@ export class ColumnList extends React.Component {
         style={{
           flex: 1,
         }}>
-        <NavHeader title={'ColumnList'} 
-        leftIc={'ios-arrow-back'}
-        leftPressed={() => {
-          this.props.navigation.goBack();
-          }}/>
+        <NavHeader
+          title={'ColumnList'}
+          leftIc={'ios-arrow-back'}
+          leftPressed={() => {
+            this.props.navigation.goBack();
+          }}
+        />
         {/* <View
           style={{
             height: h('10%'),
@@ -631,7 +632,7 @@ export class ColumnList extends React.Component {
             showsHorizontalScrollIndicator={false}
           />
         </View> */}
-        
+
         <View
           style={{
             height: h('85%'),

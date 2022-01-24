@@ -20,7 +20,7 @@ export class EditProfile extends React.Component {
     this.setState({
       user: data,
       name: data.name,
-      // email: data.email,
+      email: data.email,
       password: data.password,
     });
   };

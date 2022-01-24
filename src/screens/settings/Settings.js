@@ -49,6 +49,21 @@ export class Settings extends React.Component {
             Contact US
           </Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            height: h('8%'),
+            width: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderBottomWidth: h('0.05'),
+          }}>
+          <Text
+            style={{
+              fontSize: 17,
+            }}>
+            Contact US
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }
